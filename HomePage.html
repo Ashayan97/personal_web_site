@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="PageStyle.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href=public/PageStyle.css>
     <title>Title</title>
 </head>
 <body class="body">
@@ -13,9 +14,9 @@
 </header>
 <section style="float: left">
     <div class="pic_back_div">
-        <img class="pic_profile" src="Images/me.jpg" alt="me">
+        <img class="pic_profile" src="public/Images/me.jpg" alt="me">
     </div>
-    <div style="float: left;margin: 0 14% 0 53px; height: 200px;width: 336px">
+    <div class="into_div">
         <h2 style="float: left">
             Hi, I'm <br>
             Amir Shaya Nasiri Majd
@@ -44,26 +45,27 @@
     </h2>
     <div style="float: left; margin: 0 0 0 15px;width: 100%">
         <a style="float: left;margin: 20px 1% 0 1%;" href="mailto:sshayan1997@gmail.com">
-            <div class="social_btn"><img src="Images/gmail.png" style="float: left; width: 32px;
+            <div class="social_btn"><img src="public/Images/gmail.png" style="float: left; width: 32px;
          height: 24px; margin: 38px 24px 38px 34px" alt="Email">
                 <div style="float: left;margin: 42px 0 40px 0">sshayan1997@gmail.com</div>
             </div>
         </a>
-        <a style="float: left ;margin: 20px 1% 0 1%;" href="https://www.linkedin.com/in/amir-shayan-nasiri-majd-419323131/">
-            <div class="social_btn"><img src="Images/linkedIn.png" style="float: left; width: 32px;
+        <a style="float: left ;margin: 20px 1% 0 1%;"
+           href="https://www.linkedin.com/in/amir-shayan-nasiri-majd-419323131/">
+            <div class="social_btn"><img src="public/Images/linkedIn.png" style="float: left; width: 32px;
          height: 32px; margin: 38px 24px 38px 34px" alt="Linked In">
                 <div style="float: left;margin: 42px 0 40px 0">Amir Shayan Nasiri Majd</div>
             </div>
         </a>
         <a style="float: left ;margin: 20px 1% 0 1%;" href="tel:+989178556367">
-            <div class="social_btn"><img src="Images/phone.png" style="float: left; width: 32px;
+            <div class="social_btn"><img src="public/Images/phone.png" style="float: left; width: 32px;
          height: 32px; margin: 38px 24px 38px 34px" alt="Phone">
                 <div style="float: left;margin: 42px 0 40px 0">+98 917 855 6367</div>
             </div>
         </a>
 
         <a style="float: left ;margin: 20px 1% 0 1%;" href="https://github.com/Ashayan97">
-            <div class="social_btn"><img src="Images/github.png" style="float: left; width: 32px;
+            <div class="social_btn"><img src="public/Images/github.png" style="float: left; width: 32px;
          height: 32px; margin: 38px 24px 38px 34px" alt="GitHub">
                 <div style="float: left;margin: 42px 0 40px 0">Ashayan97</div>
             </div>
@@ -83,10 +85,11 @@
             Message
         </h4>
         <label>
-            <input class="input" type="text" name="message" style="height: 180px;margin-top: 20px">
-        </label>
 
+            <textarea class="input" name="message" style="height: 180px;margin-top: 20px"></textarea>
+        </label>
         <input type="submit" class="submit_input">
+
     </form>
 </section>
 <footer>
