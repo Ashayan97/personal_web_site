@@ -109,6 +109,16 @@ section {
     border-color: rgb(74, 144, 226);
     color: white;
     margin: 40px 0 0 15px;
+    font-size: 17px;
+}
+
+footer {
+    width: 100%;
+    float: left;
+    padding: 18px 0 18px 40.1%;
+    background-color: rgb(242, 242, 242);
+    color: rgba(0, 0, 0, 0.7);
+    font-size: 12px;
 }
 
 
