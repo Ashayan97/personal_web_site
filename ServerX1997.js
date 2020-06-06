@@ -3,8 +3,7 @@ const express = require('express');
 const path = require('path');
 const nodemailer = require('nodemailer');
 const exphbs = require('express-handlebars');
-const bodyparser = require('body-parser');
-
+const bodyParser = require('body-parser')
 
 const app = express();
 
@@ -41,10 +40,10 @@ app.post('/send', function (req,res) {
     // create reusable transporter object using the default SMTP transport
     let transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
-        port: 465,
+        port: 587,
         secure: false, // true for 465, false for other ports
         auth: {
-            user: 'sshayan1997@gmail.com', // generated ethereal user
+            user: 'site.shayan@gmail.com', // generated ethereal user
             pass: '', // generated ethereal password
         },
         tls:{
@@ -71,6 +70,7 @@ app.post('/send', function (req,res) {
 
         // Preview only available when sending through an Ethereal account
         console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+        res.send('Og');
     });
 
 });
