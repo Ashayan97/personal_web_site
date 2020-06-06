@@ -72,13 +72,16 @@
             </div>
         </a>
     </div>
-    <h2 style="float: left; margin: 140px 50% 0 15px; color: rgb( 13, 16, 55)">
+    <h2 style="float: left; margin: 140px 50% 40px 15px; color: rgb( 13, 16, 55)">
         Contact me
     </h2>
-    <h4 style="float: left; margin: 40px 50% 0 15px; color: rgb( 13, 16, 55)">
+<!--    <div class="message" style='float:left;margin: 0 40% 2px 0  ;color: green'>-->
+        {{msg}}
+
+    <h4 style="float: left; margin: 0 50% 0 15px; color: rgb( 13, 16, 55)">
         Full name
     </h4>
-    <form method="post" action="/send" target="_blank" style="float: left;margin-top: 20px;margin-bottom: 140px; width: 100%">
+    <form method="post" action="send"  style="float: left;margin-top: 20px;margin-bottom: 140px; width: 100%">
         <label>
             <input class="input" type="text" name="name" id="name" style="height: 55px">
         </label>
