@@ -4,6 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href=PageStyle.css>
+    <script>
+        function sendEmail() {
+            var name = document.getElementById("name").value;
+            var message = document.getElementById("message").value;
+            var xhttp;
+            xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("msg").innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("Post", "send", true);
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhttp.send("name=" + name + "&message=" + message);
+        }
+    </script>
     <title>Title</title>
 </head>
 <body class="body">
@@ -75,13 +91,12 @@
     <h2 style="float: left; margin: 140px 50% 40px 15px; color: rgb( 13, 16, 55)">
         Contact me
     </h2>
-<!--    <div class="message" style='float:left;margin: 0 40% 2px 0  ;color: green'>-->
-        {{msg}}
-
+    <p id="msg" style='float:left;margin: 0 40% 5px 15px  ;color: green'>
+    </p>
     <h4 style="float: left; margin: 0 50% 0 15px; color: rgb( 13, 16, 55)">
         Full name
     </h4>
-    <form method="post" action="send"  style="float: left;margin-top: 20px;margin-bottom: 140px; width: 100%">
+    <div style="float: left;margin-top: 20px;margin-bottom: 140px; width: 100%">
         <label>
             <input class="input" type="text" name="name" id="name" style="height: 55px">
         </label>
@@ -92,9 +107,9 @@
 
             <textarea class="input" name="message" id="message" style="height: 180px;margin-top: 20px"></textarea>
         </label>
-        <input type="submit" class="submit_input">
+        <button onclick="sendEmail()" class="submit_input">submit</button>
 
-    </form>
+    </div>
 </section>
 <footer>
     Copyright © 2015 Amir Shayan Nasiri Majd | UI Graphic Designed by BahramIrani

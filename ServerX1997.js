@@ -68,7 +68,9 @@ app.post('/send', function (req, res) {
 
     transporter.sendMail(mailOption, (error, info) => {
         if (error) {
+            res.send("There is problem :(")
             return console.log(error);
+
         }
 
         console.log("Message sent: %s", info.messageId);
@@ -76,7 +78,7 @@ app.post('/send', function (req, res) {
 
         // Preview only available when sending through an Ethereal account
         console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
-        res.render(homepage, {msg: " massage send :)"});
+        res.send("message sent :)");
     });
 
 });
