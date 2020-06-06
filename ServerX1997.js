@@ -1,77 +1,18 @@
-// var http = require('http');
-// var url = require('url');
-// var fs = require('fs');
-//
-// // app.use(express.static(path.join(__dirname, 'public')));
-//
-// http.createServer(
-//     function (req, res) {
-//         var header_type = "";
-//         var data = "";
-//         var q = url.parse(req.url, true);
-//         var address = q.pathname;
-//         if (address == "/") {
-//             // fs.readFile('PageStyle.css', function (err, data2) {
-//             //     res.writeHead(200, {'Content-Type': 'text/css'});
-//             //     fs.readFile('HomePage.html', function (err, data) {
-//             //         res.writeHead(200, {'Content-Type': 'text/html'});
-//             //         res.write(data);
-//             //         res.write(data2);
-//             //         res.end();
-//             //     });
-//             // });
-//
-//             var render = function (resource) {
-//                 // resource = name of resource (i.e. index, site.min, jquery.min)
-//                 fs.readFile(__dirname + "/" + resource, function (err, file) {
-//                     if (err) return false; // Do something with the error....
-//                     header_type = ""; // Do some checking to find out what header type you must send.
-//                     data = file;
-//                 });
-//             };
-//
-//             get( function (req, res, next) {
-//                 // Send out the index.html
-//                 render('HomePage.html');
-//                 next();
-//             });
-//
-//
-//             get( function (req, res, next) {
-//                 render('PageStyle.css');
-//                 next();
-//             });
-//         } else {
-//             if (address == "/blog") {
-//                 fs.readFile('BlogPage.html', function (err, data) {
-//                     res.writeHead(200, {'Content-Type': 'text/html'});
-//                     res.write(data);
-//                     res.end();
-//                 });
-//             } else if (address == "/cv" || address == "/CV" || address == "/Cv" || address == "/cV") {
-//                 fs.readFile('CV.pdf', function (err, data) {
-//                     res.writeHead(200, {'Content-Type': 'text/html'});
-//                     res.write(data);
-//                     res.end();
-//                 });
-//             } else {
-//                 fs.readFile('404.html', function (err, data) {
-//                     res.writeHead(200, {'Content-Type': 'text/html'});
-//                     res.write(data);
-//                     res.end();
-//                 });
-//             }
-//         }
-//
-//     }).listen(8080);
+
+const express = require('express');
+const path = require('path');
+const nodemailer = require('nodemailer');
+const exphbs = require('express-handlebars');
+const bodyparser = require('body-parser');
 
 
+const app = express();
 
-var express = require('express');
-var app = express();
-var path = require('path');
+app.engine('handlebars',exphbs());
+app.set('view engine','handlebars');
 
-// viewed at http://localhost:8080
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 
 app.get('/', function(req, res) {
     app.use(express.static(path.join(__dirname, '/')));
@@ -89,4 +30,39 @@ app.get('/cv', function(req, res) {
     app.use(express.static(path.join(__dirname, '/')));
     res.sendFile(path.join(__dirname + '/CV.pdf'));
 });
+
+app.post('/send', function (req,res) {
+    const ans='' +
+        '<h2> new message </h2> <br>' +
+        '<h4>name:</h4>${req.body.name}<br><br>' +
+        '<h4>message:</h4>${req.body.message}<br>'
+
+
+    // create reusable transporter object using the default SMTP transport
+    let transporter = nodemailer.createTransport({
+        host: "smtp.gmail.com",
+        port: 465,
+        secure: false, // true for 465, false for other ports
+        auth: {
+            user: 'sshayan1997@gmail.com', // generated ethereal user
+            pass: testAccount.pass, // generated ethereal password
+        },
+    });
+
+    // send mail with defined transport object
+    let info = await transporter.sendMail({
+        from: '"Fred Foo 👻" <foo@example.com>', // sender address
+        to: "bar@example.com, baz@example.com", // list of receivers
+        subject: "Hello ✔", // Subject line
+        text: "Hello world?", // plain text body
+        html: "<b>Hello world?</b>", // html body
+    });
+
+    console.log("Message sent: %s", info.messageId);
+    // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
+
+    // Preview only available when sending through an Ethereal account
+    console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+})
+
 app.listen(8080);
